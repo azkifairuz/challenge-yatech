@@ -22,3 +22,10 @@ endpoint : http://localhost:3000/registration-patien
 }
 
 ```
+
+## folder structur
+controller: tempat bisnis logic
+route: tempat route
+prisma: tempat represntatsi model
+utils: utility atau helper function yg nantinya bisa digukana berulang 
+
