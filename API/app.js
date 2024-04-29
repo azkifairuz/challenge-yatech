@@ -1,15 +1,22 @@
 const express = require('express');
 
-   const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client');
+const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-   const app = express();
+const prisma = new PrismaClient();
+const PORT = process.env.PORT || 3000;
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+const patienRoute = require("./routes/patienRoute");
 
-   const prisma = new PrismaClient();
+app.use(
+  "/api/",
+  patienRoute,
+);
 
-   const PORT = process.env.PORT || 3000;
-
-   app.listen(PORT, () => {
-
-     console.log(`Server is running on port ${PORT}`);
-
-   });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

@@ -16,7 +16,7 @@ datasource db {
 model Patient {
   id                String   @id @default(cuid())
   namaPasien        String
-  tanggalPengobatan DateTime
+  tanggalPengobatan DateTime @db.Date
   Keluhan           String
   ResepObat         String
   Biaya             Float

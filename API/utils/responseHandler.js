@@ -6,3 +6,7 @@ const responseMessage = function (response, statusCode, message,isError) {
   response.status(statusCode).json(data);
   response.end;
 };
+
+module.exports = {
+  responseMessage,
+};

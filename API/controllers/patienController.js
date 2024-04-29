@@ -1,8 +1,8 @@
 const { PrismaClient } = require("@prisma/client");
-const { responseMessage } = require("../utils/responseHandle");
+const { responseMessage } = require("../utils/responseHandler");
 const prisma = new PrismaClient();
 
-async function functionName(req, res) {
+async function registrationPatien(req, res) {
   try {
     const {
       nama,
@@ -18,13 +18,14 @@ async function functionName(req, res) {
     if (!nama || !tanggal || !keluhan || !resep || !biaya) {
       return responseMessage(res, 400, "field tidak boleh kosong", false);
     }
-    const result = await prisma.patient.create({
+     await prisma.patient.create({
       data: {
         id: idPasien,
         namaPasien: nama,
-        tanggalPengobatan: tanggal,
+        tanggalPengobatan: new Date(tanggal),
         ResepObat: resep,
         Biaya: biaya,
+        Keluhan: keluhan,
         usesInsurance: usesInsurance,
         insuranceName: insuranceName,
         coveredCost: coveredCost,
@@ -42,3 +43,6 @@ async function functionName(req, res) {
     );
   }
 }
+module.exports = {
+  registrationPatien,
+};
